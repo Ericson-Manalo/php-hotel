@@ -4,10 +4,6 @@ h1{
     font-weight: 700;
 }
 
-td{
-    text-align: center;
-}
-
 th{
-    font-size: 1rem;
+    text-align: center;
 }
