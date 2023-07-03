@@ -6,12 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     <link rel="stylesheet" href="styles/style.css">
+
     <title>Hotels</title>
 </head>
     <body>
 
-    </body>
-</html>
 
 
 <?php
@@ -56,11 +55,13 @@
 
     ];
 
-    $filteredHotel = [];
+    $parkingStatus = '';
 
     foreach ($hotels as $singleHotel){
         if ($singleHotel['parking'] === true) {
-            # code...
+            $parkingStatus = 'yes';
+        }else{
+            $parkingStatus = 'no';
         }
     }
 ?>
@@ -69,30 +70,50 @@
     Hotels
 </h1>
 
-<form action="" method="get">
-    <input type="text" name="parking" id="parking">
+<form method="get">
+    <label for="parking">Parking:  </label>
+    <input type="radio" name="parking" id="parking" value="yes">
+    <label for="parkingYes">Yes</label>
+    <input type="radio" name="parking" id="parking" value="no">
+    <label for="parkingNo">No</label>
+
+    <br>
+
+
+    <label for="vote">Vote</label>
+    <select name="vote" id="vote">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+    </select>
 </form>
 
 
-        <table class="table">
-            <thead>
-                <tr>
-                    <th scope="col">Hotel's name</th>
-                    <th scope="col">Hotel's Description</th>
-                    <th scope="col">Vote</th>
-                    <th scope="col">Distance to center</th>
-                </tr>
-            </thead>
-            <tbody>
-            <?php
-                foreach ($hotels as $hotel) {
-                    echo '<tr>';
-                    echo '<td>' . $hotel['name'] . '</td>';
-                    echo '<td>' . $hotel['description'] . '</td>';
-                    echo '<td>' . $hotel['vote'] . '</td>';
-                    echo '<td>' . $hotel['distance_to_center'] . ' Km' . '</td>';
-                    echo '</tr>';
-                }
-            ?>
-            </tbody>
-        </table>
+<table class="table text-align-center">
+    <thead>
+        <tr>
+            <th scope="col">Hotel's name</th>
+            <th scope="col">Hotel's Description</th>
+            <th scope="col">Vote</th>
+            <th scope="col">Distance to center</th>
+        </tr>
+    </thead>
+    <tbody>
+    <?php
+        foreach ($hotels as $singleHotel) {
+            echo '<tr>';
+                echo '<td>' . $singleHotel['name'] . '</td>';
+                echo '<td>' . $singleHotel['description'] . '</td>';
+                echo '<td>' . $singleHotel['vote'] . '</td>';
+                echo '<td>' . $singleHotel['distance_to_center'] . ' Km' . '</td>';
+            echo '</tr>';
+        }
+    ?>
+    </tbody>
+</table>
+
+
+</body>
+</html>
