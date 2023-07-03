@@ -63,6 +63,7 @@
         }else{
             $parkingStatus = 'no';
         }
+        var_dump($parkingStatus);
     }
 ?>
 
@@ -88,6 +89,10 @@
         <option value="4">4</option>
         <option value="5">5</option>
     </select>
+
+    <br>
+
+    <input type="submit" value="Search">
 </form>
 
 
@@ -96,6 +101,7 @@
         <tr>
             <th scope="col">Hotel's name</th>
             <th scope="col">Hotel's Description</th>
+            <th scope="col">Parking</th>
             <th scope="col">Vote</th>
             <th scope="col">Distance to center</th>
         </tr>
@@ -103,12 +109,17 @@
     <tbody>
     <?php
         foreach ($hotels as $singleHotel) {
+
+            if (($parkingStatus === "yes" && $singleHotel['parking']) || ($parkingStatus === "no" && !$singleHotel['parking'])) {
+            
             echo '<tr>';
                 echo '<td>' . $singleHotel['name'] . '</td>';
                 echo '<td>' . $singleHotel['description'] . '</td>';
+                echo '<td>' . ($singleHotel['parking'] ? "yes" : 'no') . '</td>';
                 echo '<td>' . $singleHotel['vote'] . '</td>';
                 echo '<td>' . $singleHotel['distance_to_center'] . ' Km' . '</td>';
             echo '</tr>';
+            }
         }
     ?>
     </tbody>
