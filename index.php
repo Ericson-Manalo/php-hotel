@@ -1,3 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <title>Hotels</title>
+</head>
+<body>
+    
+</body>
+</html>
+
+
+
+
+
 <?php
 
     $hotels = [
@@ -41,3 +59,52 @@
     ];
 
 ?>
+
+
+
+<table class="table table-striped">
+    <thead>
+        <th>
+            <td>Hotels</td>
+        </th>
+    </thead>
+    <tbody>
+        <tr>
+            <th scope="col">Hotel's name</th>
+            <?php foreach ($hotels as $singleHotel) { ?>
+                <td>
+                    <?php echo $singleHotel['name']?>
+                </td>
+            <?php } ?>
+        </tr>
+        <tr>
+            <th scope="row">Hotel's Description</th>
+            <?php foreach ($hotels as $singleHotel) { ?>
+                <td>
+                    <?php echo $singleHotel['description']?>
+                </td>
+            <?php } ?>
+        </tr>
+        <tr>
+            <th scope="row">Vote</th>
+            <?php foreach ($hotels as $singleHotel) { ?>
+                <td>
+                    <?php echo $singleHotel['vote']?>
+                </td>
+            <?php } ?>
+        </tr>
+        <tr>
+            <th scope="row">Distance to center</th>
+            <?php foreach ($hotels as $singleHotel) { ?>
+                <td>
+                    <?php echo $singleHotel['distance_to_center']?>
+                </td>
+            <?php } ?>
+        </tr>
+    </tbody>
+</table>
+
+
+<ul>
+
+</ul>
