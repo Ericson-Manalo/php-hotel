@@ -55,16 +55,28 @@
 
     ];
 
-    $parkingStatus = '';
+    
 
-    foreach ($hotels as $singleHotel){
-        if ($singleHotel['parking'] === true) {
-            $parkingStatus = 'yes';
-        }else{
-            $parkingStatus = 'no';
+        if (!empty($_GET['parking']) && $_GET['parking'] == 'on') {
+            $filteredHotels = [];
+            foreach ($hotels as $singleHotel){
+                if ($singleHotel['parking'] === true){
+                    $filteredHotels[] = $singleHotel;
+                }
+            }
+        $hotels = $filteredHotels;
         }
-        var_dump($parkingStatus);
-    }
+
+        if (!empty($_GET['vote']) && is_numeric($_GET['vote'])){
+            $filteredHotels = [];
+            foreach ($hotels as $singleHotel) {
+                if ($singleHotel['vote'] >= $_GET['vote']){
+                    $filteredHotels[] = $singleHotel;
+                }
+            }
+    
+            $hotels = $filteredHotels;
+        }
 ?>
 
 <h1 class="text-align-center">
@@ -72,23 +84,28 @@
 </h1>
 
 <form method="get">
-    <label for="parking">Parking:  </label>
-    <input type="radio" name="parking" id="parking" value="yes">
-    <label for="parkingYes">Yes</label>
-    <input type="radio" name="parking" id="parking" value="no">
-    <label for="parkingNo">No</label>
+        <div class="form-check mb-3">
+            <input class="form-check-input" type="checkbox" id="flexCheckDefault" name="parking">
+            <label class="form-check-label" for="flexCheckDefault">
+                Show only hotels with available parking
+            </label>
+        </div>
+
+        
+        <label for="vote">Vote</label>
+        <select name="vote" id="vote">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+        </select>
+        
 
     <br>
 
 
-    <label for="vote">Vote</label>
-    <select name="vote" id="vote">
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-        <option value="5">5</option>
-    </select>
+
 
     <br>
 
@@ -110,7 +127,7 @@
     <?php
         foreach ($hotels as $singleHotel) {
 
-            if (($parkingStatus === "yes" && $singleHotel['parking']) || ($parkingStatus === "no" && !$singleHotel['parking'])) {
+           // if (($parkingStatus === "yes" && $singleHotel['parking']) || ($parkingStatus === "no" && !$singleHotel['parking'])) {
             
             echo '<tr>';
                 echo '<td>' . $singleHotel['name'] . '</td>';
@@ -120,7 +137,7 @@
                 echo '<td>' . $singleHotel['distance_to_center'] . ' Km' . '</td>';
             echo '</tr>';
             }
-        }
+       // }
     ?>
     </tbody>
 </table>
